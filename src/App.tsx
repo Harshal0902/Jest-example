@@ -2,7 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+export function add(a: number, b: number): number {
+  return (a + b);
+}
+
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
