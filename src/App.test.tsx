@@ -44,20 +44,26 @@ describe('Login component tests', () => {
     ReactDOM.render(<Login />, container);
   })
 
+  // to clear everything at the end so that tests don't interrupt each other
   afterEach(() => {
     document.body.removeChild(container);
     container.remove();
   })
 
-  test('Renders all input fields correctly', () => {
+  // Running test to render each input field
+  it('Renders all input fields correctly', () => {
+    // Selecting the input fields
     const inputs = container.querySelectorAll('input');
+    // Asserting that the input fields are rendered correctly
     expect(inputs).toHaveLength(2);
 
+    // Let's check the first and second input field with the name "email" and "password" respectively
     expect(inputs[0].name).toBe('email');
     expect(inputs[1].name).toBe('password');
   });
 
-  test('Renders all buttons correctly', () => {
+  // Running test to render each button
+  it('Renders all buttons correctly', () => {
     const buttons = container.querySelectorAll('button');
     expect(buttons).toHaveLength(2);
 
