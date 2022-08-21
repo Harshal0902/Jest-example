@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App, { add } from './App';
+import App, { add, Login } from './App';
+import * as ReactDOM from 'react-dom';
 
 // We outline the objectives of the test.:
 test('renders learn react link', () => {
@@ -31,4 +32,37 @@ describe('add function', () => {
       expect(result).toEqual(expected);
     });
   })
+})
+
+describe('Login component tests', () => {
+  let container: HTMLDivElement
+
+  // beforeEach: Runs a function before each of the tests in this file runs. If the function returns a promise or is a generator, Jest waits for that promise to resolve before running the test.
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+    ReactDOM.render(<Login />, container);
+  })
+
+  afterEach(() => {
+    document.body.removeChild(container);
+    container.remove();
+  })
+
+  test('Renders all input fields correctly', () => {
+    const inputs = container.querySelectorAll('input');
+    expect(inputs).toHaveLength(2);
+
+    expect(inputs[0].name).toBe('email');
+    expect(inputs[1].name).toBe('password');
+  });
+
+  test('Renders all buttons correctly', () => {
+    const buttons = container.querySelectorAll('button');
+    expect(buttons).toHaveLength(2);
+
+    expect(buttons[0].type).toBe('button');
+    expect(buttons[1].type).toBe('button');
+  });
+
 })
